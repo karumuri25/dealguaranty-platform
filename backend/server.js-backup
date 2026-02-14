@@ -1,0 +1,26 @@
+const express = require('express');
+const cors = require('cors');
+
+const app = express();
+const PORT = 3000;
+
+app.use(cors({
+  origin: 'http://localhost:5173',
+  methods: ['GET'],
+  allowedHeaders: ['Content-Type'],
+}));
+
+// Health route your frontend is calling
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok', message: 'dealguaranty backend is running' });
+});
+
+// Original API route
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok', message: 'dealguaranty backend is running' });
+});
+
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Backend running on port ${PORT}`);
+});
+
